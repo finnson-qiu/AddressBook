@@ -90,6 +90,25 @@ public class AdMainInterface {
         button4.setBounds(510,200,100,40);
         jPanel.add(button4);
 
+        Font fnt1 = new Font("楷体",Font.PLAIN,18);
+        JLabel label5 = new JLabel("学号");
+        label5.setFont(fnt1);
+        label5.setForeground(Color.blue);
+        label5.setBounds(160,255,40,20);
+        jPanel.add(label5);
+
+        JLabel label6 = new JLabel("姓名");
+        label6.setFont(fnt1);
+        label6.setForeground(Color.blue);
+        label6.setBounds(290,255,40,20);
+        jPanel.add(label6);
+
+        JLabel label7 = new JLabel("密码");
+        label7.setFont(fnt1);
+        label7.setForeground(Color.blue);
+        label7.setBounds(470,255,40,20);
+        jPanel.add(label7);
+
         textArea = new JTextArea();
         textArea.setFont(fnt);
         textArea.setEditable(false);

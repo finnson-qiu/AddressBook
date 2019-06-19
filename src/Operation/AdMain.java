@@ -14,6 +14,7 @@ public class AdMain {
         adMainInterface.CreateAdMainFrame();
         AddActionListener(adMainInterface.getButton1());
         DeleteActionListener(adMainInterface.getButton3());
+        SelectActionListener(adMainInterface.getButton4());
     }
 
     private static void AddStudent(){
@@ -40,30 +41,45 @@ public class AdMain {
         }
     }
 
-    private static void DeleteStudent(){
-        String NO = adMainInterface.getTextField1().getText();
-        String Name = adMainInterface.getTextField3().getText();
-
+    private static int JudgeFlag(String No,String Name){
         int flag = 0;
-        if(NO.isEmpty()){
+        if(No.isEmpty()){
             if(Name.isEmpty()){
-            }
+            }                               //flag = 0代表No和Name都为空
             else{
-                flag = 3;
+                flag = 3;                   //flag = 3代表No为空，Name 不为空
             }
         }
         else{
             if(Name.isEmpty()){
-                flag = 1;
+                flag = 1;                   //flag = 1代表No不为空，Name为空
             }
             else{
-                flag = 2;
+                flag = 2;                   //flag = 2代表No和Name都不为空
             }
         }
+        return flag;
+    }
+
+    private static void DeleteStudent(){
+        String No = adMainInterface.getTextField1().getText();
+        String Name = adMainInterface.getTextField3().getText();
+
+        int flag = JudgeFlag(No,Name);
         if(flag != 0){
             DbOperator db = new DbOperator();
-            db.DeleteUserData(NO,Name,flag);
+            db.DeleteUserData(No,Name,flag);
         }
+    }
+
+    private static void SelectStudent(){
+        String No = adMainInterface.getTextField1().getText();
+        String Name = adMainInterface.getTextField3().getText();
+
+        int flag = JudgeFlag(No,Name);
+        DbOperator db = new DbOperator();
+        String display = db.Select(No,Name,flag);
+        adMainInterface.getTextArea().setText(display);
     }
 
     private static void AddActionListener(JButton button){
@@ -74,6 +90,12 @@ public class AdMain {
     private static void DeleteActionListener(JButton button){
         button.addActionListener(e -> {
             DeleteStudent();
+        });
+    }
+
+    private static void SelectActionListener(JButton button){
+        button.addActionListener(e -> {
+            SelectStudent();
         });
     }
 }

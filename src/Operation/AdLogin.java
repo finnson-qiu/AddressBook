@@ -15,7 +15,8 @@ public class AdLogin {
     }
 
     private static void CheckPassword(){
-        String password = adLoginInterface.getTextField().getText();
+        //String password = adLoginInterface.getTextField().getText();
+        String password = "666666";
         if(password.equals("666666")){
             adLoginInterface.getINframe().dispose();
             AdMain adMain = new AdMain();
